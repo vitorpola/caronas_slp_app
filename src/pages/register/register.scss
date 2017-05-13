@@ -1,0 +1,32 @@
+page-register {
+    ion-row {
+       align-items: center;
+       text-align: center;
+     }
+ 
+     ion-item {
+         font-size: 0.9em;
+         margin-bottom: 10px;
+     }
+ 
+     .signup-col {
+       margin: 0px 16px 0px 16px;
+       padding-bottom: 20px;
+     }
+ 
+     .item-inner {
+       box-shadow: none !important;
+     }
+ 
+     .submit-btn {
+       background: #6CA492;
+       border-radius: 3px !important;
+       border: 1px solid #ffffff;
+     }
+
+     .item-inner{
+        border-bottom: 1px solid #dedede!important;
+        box-shadow: none!important;
+    }
+
+}

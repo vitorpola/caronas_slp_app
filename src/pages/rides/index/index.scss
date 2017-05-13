@@ -1,0 +1,37 @@
+page-rides-index {
+    ion-list{
+        margin-top: 5px;
+    }
+    .card-label{
+        margin-top: 2px;
+        margin-bottom: 0px;
+        font-size: 1.2rem;
+        color: #777;
+    }
+    .card-value{
+        font-size: 1.6rem;
+    }
+    .time{
+        font-size: 1.6rem;
+    }
+    img{
+        width: 60%;
+        margin: 4px auto;
+        border-radius: 10%;
+    }
+    ion-card{
+        margin: 5px!important;
+    }
+    ion-card-content{
+        background-color: #f0f0f0;
+    }
+    .offer{
+        border-left: 3px solid #3b5998;
+    }
+    .demand{
+        border-left: 3px solid #ec407a;
+    }
+    ion-col[width-33]{
+        text-align: center;
+    }
+}

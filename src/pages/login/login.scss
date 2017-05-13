@@ -1,0 +1,59 @@
+page-login {
+ 
+  .login-content {
+    background: #FE675C;
+ 
+    .logo-row {
+      padding-top: 20px;
+      padding-bottom: 10px;
+    }
+ 
+    .login-box {
+      background: #ffaba5;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 3px;
+    }
+ 
+     ion-item {
+         font-size: 0.9em;
+         margin-bottom: 10px;
+         border: 1px solid #ffffff;
+         border-bottom: 0px !important;
+         box-shadow: none !important;
+         border-radius: 3px;
+     }
+     h6{
+       text-align: center;
+       color: #fff;
+       margin-top: 0;
+       margin-bottom: 10px;
+     }
+
+     .signup-col {
+       margin: 0px 16px;
+       margin-top: -20px;
+       padding-bottom: 20px;
+     }
+ 
+     .item-inner {
+       border-bottom-color: #ffffff !important;
+       box-shadow: none !important;
+     }
+ 
+     .submit-btn {
+       border-radius: 3px;
+     }
+ 
+     .register-btn {
+       color: #ffffff;
+       font-size: 0.9em;
+     }
+
+     .facebook-btn{
+       background-color: #3b5998;
+       font-size: 0.9em;
+     }
+  }
+ 
+}

@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar color='dark'>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Caronas SLP
+    </ion-title>
+  </ion-navbar>
+
+  <ion-segment [(ngModel)]="type">
+    <ion-segment-button value="offer">
+      OFERTAS
+    </ion-segment-button>
+    <ion-segment-button value="demand">
+      PROCURA
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+
+<ion-content class="tasks">
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-down" pullingText="Solte para atualizar" refreshingSpinner="crescent" refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <div class="empty-message" *ngIf="(rides | json) == '[]'">
+      <ion-icon name="sad"></ion-icon>
+      <br>Infelizmente, não há caronas disponíveis.<br>
+      <button ion-button round color="offer" (click)='newRide("offer")'>Oferecer Carona</button>
+      <button ion-button round color="demand" (click)='newRide("demand")'>Pedir Carona</button>
+    </div>
+    <ion-card *ngFor="let ride of rides" (click)="showRide(ride.id)">
+      <ion-card-content *ngIf="ride.ride_type == type" class="{{ride.ride_type}}">
+        <ion-grid>
+          <ion-row>
+            <ion-col width-33>
+              <img *ngIf='ride.driver.picture_url !== null' [src]="ride.driver.picture_url">
+              <img *ngIf='ride.driver.picture_url === null' src="assets/img/anonymous.png">
+              <p>{{ride.driver.name}}</p>
+            </ion-col>
+            <ion-col>
+              <p class="card-label">Saída</p>
+              <p class="card-value">
+                {{ride.to_city.slug}} &bull; {{ride.to_neighborhood.name}}
+              </p>
+              <p class="card-label">Destino</p>
+              <p class="card-value">
+                {{ride.from_city.slug}} &bull; {{ride.from_neighborhood.name}}
+              </p>
+            </ion-col>
+            <ion-col width-20>
+              <div *ngIf="ride.ride_type == 'demand'">
+                <p class="card-label">De</p>
+                <p class="card-value">{{ride.start_at | date:'HH:mm'}}</p>
+              </div>
+              <p class="card-label">{{ ride.ride_type == 'demand' ? 'Até' : 'Previsão' }}</p>
+              <p class="card-value time">{{ride.end_at | date:'HH:mm'}}</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>
+
+<ion-fab right bottom>
+  <button ion-fab color="secondary"><ion-icon name="add"></ion-icon></button>
+  <ion-fab-list side="left">
+    <button ion-button class="btn-fab" round color="offer" (click)='newRide("offer")'>Oferecer Carona</button>
+    <button ion-button class="btn-fab" round color="demand" (click)='newRide("demand")'>Pedir Carona</button>
+  </ion-fab-list>
+</ion-fab>

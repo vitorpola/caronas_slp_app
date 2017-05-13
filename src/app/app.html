@@ -1,0 +1,18 @@
+<ion-menu [content]="sidemenu">
+    <ion-toolbar color='dark' (click)='openMyInfo()'>
+        <img *ngIf='this.current_user.picture_url !== null' [src]="this.current_user.picture_url">
+        <img *ngIf='this.current_user.picture_url === null' src="assets/img/anonymous.png">
+        <h3>{{current_user.name }}</h3>
+        <h3>{{current_user.email }}</h3>
+    </ion-toolbar>
+    <ion-content>
+        <ion-list>
+            <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+                <ion-icon name="{{p.icon}}"></ion-icon> {{p.title}}
+            </button>
+            <button ion-item (click)="logout()"><ion-icon name="exit"></ion-icon> Sair</button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #sidemenu swipe-back-enabled="false"></ion-nav>

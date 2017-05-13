@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar color='dark'>
+    <ion-title>
+      Meus Dados
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="confirmInfo()">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col width-33 (click)="takePicture()">
+      <img *ngIf='user.picture_url !== null' [src]="user.picture_url">
+      <img *ngIf='user.picture_url === null' src="assets/img/anonymous.png">
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+
+  <ion-list>
+    <ion-list-header>
+      Informações Pessoais
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Nome</ion-label>
+      <ion-input type="text" name="name" [(ngModel)]="user.name" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input type="text" name="email" [(ngModel)]="user.email" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Mostrar Email</ion-label>
+      <ion-toggle checked="false" [(ngModel)]="user.email_share"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Telefone</ion-label>
+      <ion-input type="tel" name="phone" [(ngModel)]="user.phone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Mostrar Telefone</ion-label>
+      <ion-toggle checked="false" [(ngModel)]="user.phone_share"></ion-toggle>
+    </ion-item>
+    <p>Recomendamos habilitar este campo para facilitar o contato entre o motorista e o caroneiro.</p>
+    <ion-item>
+      <ion-label>Nº vinculado ao WhatsApp?</ion-label>
+      <ion-toggle checked="false" [(ngModel)]="user.whatsapp_share"></ion-toggle>
+    </ion-item>
+    <ion-list-header>
+      Informações do Carro
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Tem carro ?</ion-label>
+      <ion-toggle checked="false" [(ngModel)]="user.has_car"></ion-toggle>
+    </ion-item>
+    <div *ngIf="user.has_car">
+      <ion-item>
+        <ion-label>Marca Modelo</ion-label>
+        <ion-input type="text" name="name" [(ngModel)]="user.car_model" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Cor</ion-label>
+        <ion-input type="text" name="name" [(ngModel)]="user.car_color" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Placa</ion-label>
+        <ion-input type="text" name="name" [(ngModel)]="user.car_plate" readonly></ion-input>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

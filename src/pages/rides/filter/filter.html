@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar color='dark'>
+    <ion-title>
+      Filtrar Tarefa
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="confirmFilter()">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Responsável</ion-label>
+      <ion-select [(ngModel)]="filter.responsible">
+          <ion-option value="-1">Todos Responśaveis</ion-option>
+         <ion-option *ngFor="let resp of responsibles_list" [value]="resp.id"  >{{resp.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Categoria</ion-label>
+      <ion-select [(ngModel)]="filter.category">
+        <ion-option value="">Todas Categorias</ion-option>
+         <ion-option *ngFor="let category of categories_list" [value]="category.id"  >{{category.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Situação</ion-label>
+      <ion-select [(ngModel)]="filter.status" >
+        <ion-option  *ngFor="let status of status_list" [value]="status.value" >{{status.label}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</ion-content>

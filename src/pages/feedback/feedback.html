@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar color='dark'>
+     <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Feedback
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form (ngSubmit)="newFeedback()" #feedbackForm="ngForm">
+    <ion-item>
+      <ion-label>Tipo</ion-label>
+      <ion-select [(ngModel)]="feedback.type" name="type" required>
+        <ion-option value="Sugestão">Sugestão</ion-option>
+        <ion-option value="Erro">Erros</ion-option>
+        <ion-option value="Reclamação">Reclamação</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Descrição</ion-label>
+      <ion-textarea type="text" name="content" [(ngModel)]="feedback.content" required></ion-textarea>
+    </ion-item>
+
+    <button ion-button block type="submit" [disabled]="!feedbackForm.form.valid">Confirmar</button>
+
+  </form>
+
+</ion-content>

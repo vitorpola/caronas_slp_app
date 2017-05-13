@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-navbar color='dark'>
+    <ion-title>
+      {{ ride.type === 'offer' ? 'Nova Oferta' : 'Novo Pedido'}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form (ngSubmit)="newRide()" #newRideForm="ngForm" novalidate>
+
+    <h4>Saída</h4>
+    <ion-segment [(ngModel)]="ride.from_city" name="from_city" required>
+      <ion-segment-button value="São Luiz">
+        São Luiz
+      </ion-segment-button>
+      <ion-segment-button value="Taubaté">
+        Taubaté
+      </ion-segment-button>
+      <ion-segment-button value="other">
+        Outra
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-item *ngIf="ride.from_city == 'other'">
+      <ion-label stacked>Cidade</ion-label>
+      <ion-input type="text" name="from_other_city" [(ngModel)]="ride.from_other_city" required placeholder="Ex: Ubatuba"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Bairro</ion-label>
+      <ion-input type="text" name="from_neighborhood_name" [(ngModel)]="ride.from_neighborhood_name" required placeholder="Ex: Centro"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Detalhes (opcional)</ion-label>
+      <ion-input type="text" name="from_description" [(ngModel)]="ride.from_description" placeholder="Ex: Local, Estabelecimento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Data</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" name="started_at" min="2017" max="2028" cancelText="Cancelar" doneText="Confirmar"
+        [(ngModel)]="ride.date" required></ion-datetime>
+    </ion-item>
+    <ion-row>
+      <ion-col *ngIf="ride.type == 'demand'">
+        <ion-item>
+          <ion-label stacked>De</ion-label>
+          <ion-datetime displayFormat="HH:mm" name="start_time" pickerFormat="HH mm" cancelText="Cancelar" doneText="Confirmar" minuteValues="0,15,30,45"
+            [(ngModel)]="ride.start_time" required></ion-datetime>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked *ngIf="ride.type == 'demand'">Até</ion-label>
+          <ion-label stacked *ngIf="ride.type == 'offer'">Previsão de Saída</ion-label>
+          <ion-datetime displayFormat="HH:mm" name="end_time" pickerFormat="HH mm" cancelText="Cancelar" doneText="Confirmar" minuteValues="0,15,30,45"
+            [(ngModel)]="ride.end_time" required></ion-datetime>
+        </ion-item>
+
+      </ion-col>
+
+    </ion-row>
+    <h4>Destino</h4>
+    <ion-segment [(ngModel)]="ride.to_city" name="to_city" required>
+      <ion-segment-button value="São Luiz">
+        São Luiz
+      </ion-segment-button>
+      <ion-segment-button value="Taubaté">
+        Taubaté
+      </ion-segment-button>
+      <ion-segment-button value="other">
+        Outra
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-item *ngIf="ride.to_city == 'other'">
+      <ion-label stacked>Cidade</ion-label>
+      <ion-input type="text" name="to_other_city" [(ngModel)]="ride.to_other_city" required placeholder="Ex: Ubatuba"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Bairro</ion-label>
+      <ion-input type="text" name="to_neighborhood" [(ngModel)]="ride.to_neighborhood_name" required placeholder="Ex: Centro"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Detalhes (opcional)</ion-label>
+      <ion-input type="text" name="to_description" [(ngModel)]="ride.to_description" placeholder="Ex: Local, Estabelecimento"></ion-input>
+    </ion-item>
+
+    <h4>Informações adicionais</h4>
+    <ion-item>
+      <ion-label stacked>Descrição (opcional)</ion-label>
+      <ion-textarea type="text" name="note" [(ngModel)]="ride.description"></ion-textarea>
+    </ion-item>
+
+    <button ion-button block type="submit" [disabled]="!newRideForm.form.valid">Cadastrar</button>
+
+  </form>
+
+</ion-content>

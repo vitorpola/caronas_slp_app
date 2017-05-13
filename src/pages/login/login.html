@@ -1,0 +1,31 @@
+<ion-content class="login-content" padding>
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col width-67>
+      <img src="assets/img/carona.png" />
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <div class="login-box">
+    <ion-list inset>
+      <button ion-button class="facebook-btn" block icon-left (click)="loginWithFacebook()">
+        <ion-icon name="logo-facebook"></ion-icon> Conectar pelo Facebook
+      </button>
+      <h6>ou</h6>
+      <form (ngSubmit)="login()" #registerForm="ngForm">
+        <ion-item>
+          <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="user.email" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input type="password" placeholder="Senha" name="password" [(ngModel)]="user.password" required></ion-input>
+        </ion-item>
+
+        <button ion-button class="submit-btn" block type="submit" [disabled]="!registerForm.form.valid">Entrar</button>
+      </form>
+      <button ion-button class="forgot-btn" block clear>Esqueceu a senha?</button>
+    </ion-list>
+
+  </div>
+  <button ion-button class="register-btn" block clear (click)="createAccount()">Não tem uma conta? Cadastre-se</button>
+</ion-content>

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color='dark'>
+    <ion-title>
+      Novo Comentário
+    </ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="dismiss()">
+          <ion-icon name="close" ></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form (ngSubmit)="newComment()" #newCommentForm="ngForm">
+    <ion-item>
+      <ion-label stacked>Comentário</ion-label>
+      <ion-textarea type="text" name="content" [(ngModel)]="comment.description" required></ion-textarea>
+    </ion-item>
+
+   <button ion-button block type="submit" [disabled]="!newCommentForm.form.valid">Cadastrar</button>
+     
+    </form>
+
+</ion-content>

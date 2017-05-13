@@ -1,0 +1,87 @@
+page-rides-show {
+
+    ion-card-header{
+        text-align: center;
+        font-size: 2.3rem !important;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        color: #fff;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        &.offer{
+            background-color: #3b5998;
+        }
+        &.demand{
+            background-color: #ec407a;
+        }
+    }
+
+   dl {
+    padding: 0.5em;
+    padding-left: 1em;
+    position: relative;
+    }
+    dt {
+        float: left;
+        clear: left;
+        width: 45%;
+        text-align: right;
+        font-weight: bold;
+        color: #333;
+    }
+    dt:after {
+        content: ":";
+    }
+    dd {
+        margin: 0 0 0 50%;
+        padding: 0 0 0.5em 0;
+    }
+
+    .to-info, .from-info {
+        position: relative;
+        padding-top: 0px;
+        h3{
+            margin-top: 0px;
+            margin-bottom: 0px;
+            padding: 10px 0;
+            text-align: center;
+            background-color: #ededed;
+            font-weight: 300;
+        }
+    }
+
+    .empty-msg{
+        text-align: center;
+        color: #888;
+        margin: 10px auto;
+        .item-inner{
+            border-bottom: none!important;
+        }
+    }
+    .comment-date{
+        color: #888;
+        font-size: .8em;
+        margin-left: 4px;
+    }
+    ion-label{
+        white-space: normal!important;
+    }
+
+    .driver-card{
+        .avatar{
+            img{
+                width: 100px;
+                height: 100px;
+                position: relative;
+                margin: 5px auto;
+                border-radius: 100%;
+            }
+        }
+        h4{
+            font-size: 1.3em;
+            font-weight: 100;
+            text-align: center;
+        }
+    }
+    
+}

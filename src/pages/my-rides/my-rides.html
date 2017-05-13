@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar color='dark'>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Minhas Caronas
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-down" pullingText="Solte para atualizar" refreshingSpinner="crescent" refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="empty-message" *ngIf="(rides | json) == '[]'">
+    <ion-icon name="sad"></ion-icon>
+    <br>Não há caronas.<br>
+  </div>
+  <ion-list>
+    <div *ngFor="let ride of rides" class="{{status(ride)}}" >
+      <ion-item>
+        <h2>De:   \t{{ride.from_city.name }}</h2>
+        <h2>Para: {{ride.to_city.name }}</h2>
+        <p item-left>
+          {{ride.end_at| date: 'dd/MM'}}<br> {{ride.end_at| date: 'HH:mm'}}
+        </p>
+        <button ion-button clear item-right *ngIf=" status(ride) == 'active'" (click)="showRide(ride.id)">VER</button>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

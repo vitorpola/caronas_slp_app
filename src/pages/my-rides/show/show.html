@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-navbar color='dark'>
+    <ion-title *ngIf="(ride.to_city | json) != null">
+      Informações da Carona
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header class="{{ride.ride_type}}">
+      Dados da Carona
+    </ion-card-header>
+
+    <ion-card-content class="{{ride.ride_type}}" *ngIf="(ride.to_city | json) != null">
+      <div class="from-info">
+        <h3>SAÍDA</h3>
+        <dl>
+          <dt>Cidade</dt>
+          <dd class="to-city-name">{{ride.from_city.name}} </dd>
+          <dt>Bairro</dt>
+          <dd class="to-neighborhood-name">{{ride.from_neighborhood.name}} </dd>
+          <div *ngIf='ride.from_description !== null'>
+            <dt>Descrição</dt>
+            <dd>{{ride.from_description}} </dd>
+          </div>
+          <div *ngIf="ride.ride_type == 'offer'">
+            <dt>Previsão de saída</dt>
+            <dd>{{ride.end_at | date: 'dd/MM HH:mm'}} </dd>
+          </div>
+          <div *ngIf="ride.ride_type == 'demand'">
+            <dt>Data - Horário</dt>
+            <dd>{{ride.end_at | date: 'dd/MM'}} - {{ride.start_at | date: 'HH:mm'}} às {{ride.end_at | date: 'HH:mm'}} </dd>
+          </div>
+        </dl>
+      </div>
+      <div class="to-info">
+        <h3>DESTINO</h3>
+        <dl>
+          <dt>Cidade</dt>
+          <dd class="to-city-name">{{ride.to_city.name}} </dd>
+          <dt>Bairro</dt>
+          <dd class="to-neighborhood-name">{{ride.to_neighborhood.name}} </dd>
+          <div *ngIf='ride.to_description !== null'>
+            <dt>Descrição</dt>
+            <dd>{{ride.to_description}} </dd>
+          </div>
+        </dl>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="(ride.driver | json) != null">
+    <ion-card-header class="{{ride.ride_type}}">
+      Passageiro(s)
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let pass of ride.passengers">
+          <ion-avatar item-left>
+            <img *ngIf='(pass.user.picture_url | json) != null' [src]="pass.user.picture_url">
+            <img *ngIf='pass.user.picture_url === null' src="assets/img/anonymous.png">
+          </ion-avatar>
+          <h2>{{pass.user.name}} </h2>
+
+          <button ion-button item-right color="secondary" *ngIf="pass.status == 'open'" icon-left><ion-icon name="thumbs-up"></ion-icon> Aceitar</button>
+          <button ion-button clear item-right *ngIf="pass.status == 'ok'">ACEITO</button>
+
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-header class="{{ride.ride_type}}">
+      Comentários
+    </ion-card-header>
+    <ion-list>
+      <ion-item class="empty-msg" *ngIf="(ride.comments | json) == '[]'" (click)="newCommentModal()"> Nenhum comentário. </ion-item>
+      <ion-item *ngFor="let comment of ride.comments">
+        <ion-avatar item-left>
+          <img *ngIf='(comment.user.picture_url | json) != null' [src]="comment.user.picture_url">
+          <img *ngIf='comment.user.picture_url === null' src="assets/img/anonymous.png">
+        </ion-avatar>
+        <h2>{{comment.user.name}} <span class="comment-date">{{comment.created_at | date:'shortDate'}} </span></h2>
+        <p>{{comment.description}}</p>
+      </ion-item>
+      <ion-grid>
+        <ion-row justify-content-start>
+          <ion-col width-20></ion-col>
+          <ion-col>
+            <button ion-button outline round block (click)="newCommentModal()">Novo Comentário</button>
+          </ion-col>
+          <ion-col width-20></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+  </ion-card>
+</ion-content>
